@@ -17,6 +17,8 @@ Run these scripts in BigQuery Studio in order:
 5. `04_create_core_marts.sql`
    - Optional validation: `04a_validate_core_marts.sql`
 6. `05_quality_checks.sql`
+7. `06_export_thelook_to_gcs_parquet.sql`
+   - Use this only after creating a GCS bucket and replacing `YOUR_GCS_BUCKET_NAME`.
 
 After each script succeeds, save a screenshot or note the row counts. These become portfolio evidence.
 
@@ -49,3 +51,7 @@ Main source tables:
 - `inventory_items`
 - `distribution_centers`
 - `events`
+
+## Databricks Export Step
+
+`06_export_thelook_to_gcs_parquet.sql` exports the same TheLook source tables to cloud storage so Databricks can ingest them into Bronze Delta tables.

@@ -52,6 +52,21 @@
 - [ ] Build data quality page.
 - [ ] Publish to Power BI Service.
 
+## Sprint 4A: Databricks and Tableau Pivot
+
+- [ ] Create Databricks Free Edition or trial workspace.
+- [ ] Create/confirm GCS bucket for exported e-commerce source files.
+- [ ] Export TheLook source tables from BigQuery to GCS Parquet.
+- [ ] Import Databricks notebooks.
+- [ ] Create Bronze Delta tables.
+- [ ] Transform Bronze to Silver with PySpark.
+- [ ] Build Gold dimensional marts with Delta tables.
+- [ ] Create data quality checks in Databricks.
+- [ ] Create Tableau-ready SQL views.
+- [ ] Connect Tableau to Databricks SQL Warehouse.
+- [ ] Build Tableau executive dashboard.
+- [ ] Document Databricks certification alignment.
+
 ## Sprint 5: Python Analytics
 
 - [ ] Create EDA notebook/script.

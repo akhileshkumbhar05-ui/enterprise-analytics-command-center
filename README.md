@@ -25,11 +25,11 @@ This is not a single-dashboard project. It is a multi-domain analytics platform 
 
 ## Primary Stack
 
-- Warehouse: BigQuery first, Snowflake second
+- Warehouse / source system: BigQuery
 - Lakehouse / big data: Databricks + PySpark + Delta-style medallion modeling
 - Transformations: dbt
 - Quality: dbt tests plus Python validation checks
-- BI: Power BI Desktop + Power BI Service
+- BI: Power BI first, Tableau track added for Databricks-connected dashboards
 - Documentation: Markdown, metric dictionary, data catalog, BA artifacts
 - CI / deployment evidence: GitHub Actions or dbt Cloud jobs
 
@@ -51,7 +51,9 @@ This is not a single-dashboard project. It is a multi-domain analytics platform 
 - `sql/`: reusable SQL analyses and interview-grade query examples
 - `python/`: cleaning, validation, EDA, and modeling scripts/notebooks
 - `dbt/`: dbt project workspace
+- `databricks/`: Databricks notebooks, SQL views, and Lakehouse build assets
 - `powerbi/`: dashboard specs, screenshots, measure catalog, deployment notes
+- `tableau/`: Tableau connection and dashboard plan for Databricks Gold tables
 - `ba_artifacts/`: requirements, user stories, process maps, UAT, traceability
 - `portfolio/`: final case-study narrative, demo script, resume bullets
 
@@ -68,3 +70,17 @@ The first vertical slice should be e-commerce and marketing analytics using BigQ
 
 After the first vertical slice works end to end, the same architecture expands into healthcare, finance, and logistics modules.
 
+## Current Pivot
+
+The active build path is now:
+
+```text
+BigQuery public e-commerce source
+  -> GCS Parquet export or Databricks BigQuery connector
+  -> Databricks Bronze Delta tables
+  -> Silver cleaned tables
+  -> Gold dimensional marts
+  -> Tableau dashboard
+```
+
+This preserves the work already completed in BigQuery while adding hands-on practice for the Databricks Certified Data Engineer Associate exam.
