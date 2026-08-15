@@ -88,25 +88,34 @@ Expected folders in the bucket:
 
 Each folder should contain Parquet files.
 
-## Step 4: Use The GCS Path In Databricks
+## Step 4: Stage GCS Files Into A Databricks Managed Volume
 
-In the Databricks notebook widgets, set:
-
-```text
-gcs_raw_path = gs://YOUR_GCS_BUCKET_NAME/eacc/thelook
-```
-
-Example:
+In Databricks Free Edition, serverless compute may not have a Google Cloud service account attached. If direct `gs://` reads fail, use the managed Volume staging path in:
 
 ```text
-gcs_raw_path = gs://enterprise-analytics-cc-ecommerce-raw-ak/eacc/thelook
+databricks/notebooks/01_ingest_thelook_to_bronze.py
 ```
+
+Use these widgets:
+
+```text
+catalog = workspace
+source_mode = gcs_parquet
+stage_public_gcs_to_volume = true
+public_gcs_bucket = YOUR_GCS_BUCKET_NAME
+public_gcs_prefix = eacc/thelook
+gcs_raw_path = /Volumes/workspace/eacc_ecommerce_bronze/raw_files/thelook
+```
+
+Run the staging cell once. Then set `stage_public_gcs_to_volume = false` for future reruns and keep reading from the Volume path.
 
 ## Security Notes
 
-- Do not make the bucket public.
+- Do not make private/company data public.
+- For this project, temporary public-read access is acceptable only because the exported dataset comes from BigQuery public sample data.
+- Remove `allUsers` bucket access after the Volume has been populated.
 - Do not commit service account JSON keys.
-- If Databricks needs service account credentials, store them in Databricks secrets or workspace-approved credential storage.
+- If Databricks needs permanent GCS access, use Workload Identity Federation, service-account based storage credentials, or workspace-approved credential storage instead of committing keys.
 
 ## Cost Notes
 

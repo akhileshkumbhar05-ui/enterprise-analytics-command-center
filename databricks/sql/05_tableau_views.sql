@@ -3,7 +3,7 @@
 --
 -- Replace catalog/schema names if you used different widget values.
 
-USE CATALOG main;
+USE CATALOG workspace;
 USE SCHEMA eacc_ecommerce_gold;
 
 CREATE OR REPLACE VIEW vw_executive_monthly AS

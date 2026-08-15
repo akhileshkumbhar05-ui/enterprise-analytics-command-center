@@ -6,7 +6,7 @@
 
 # COMMAND ----------
 
-dbutils.widgets.text("catalog", "main")
+dbutils.widgets.text("catalog", "workspace")
 dbutils.widgets.text("silver_schema", "eacc_ecommerce_silver")
 dbutils.widgets.text("gold_schema", "eacc_ecommerce_gold")
 

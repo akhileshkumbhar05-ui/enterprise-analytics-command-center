@@ -10,7 +10,7 @@
 
 from pyspark.sql.functions import current_timestamp, lit
 
-dbutils.widgets.text("catalog", "main")
+dbutils.widgets.text("catalog", "workspace")
 dbutils.widgets.text("bronze_schema", "eacc_ecommerce_bronze")
 dbutils.widgets.text("gcs_raw_path", "gs://YOUR_GCS_BUCKET_NAME/eacc/thelook")
 dbutils.widgets.text("checkpoint_base_path", "/tmp/eacc/checkpoints/thelook")

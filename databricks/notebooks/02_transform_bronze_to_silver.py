@@ -8,7 +8,7 @@
 
 from pyspark.sql.functions import col, to_date
 
-dbutils.widgets.text("catalog", "main")
+dbutils.widgets.text("catalog", "workspace")
 dbutils.widgets.text("bronze_schema", "eacc_ecommerce_bronze")
 dbutils.widgets.text("silver_schema", "eacc_ecommerce_silver")
 

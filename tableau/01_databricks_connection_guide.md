@@ -9,7 +9,7 @@ Connect Tableau Desktop or Tableau Cloud to Databricks Gold tables/views.
 Use the Tableau-facing views from:
 
 ```text
-main.eacc_ecommerce_gold
+workspace.eacc_ecommerce_gold
 ```
 
 Views:
@@ -31,7 +31,7 @@ In Databricks:
 4. Confirm the catalog and schema:
 
 ```text
-main.eacc_ecommerce_gold
+workspace.eacc_ecommerce_gold
 ```
 
 ## Tableau Desktop Connection
@@ -47,6 +47,15 @@ In Tableau Desktop:
 5. If using token auth, generate a Databricks personal access token and use it as the password.
 6. Select the catalog and schema.
 7. Connect to the Tableau views.
+
+Recommended views:
+
+```text
+workspace.eacc_ecommerce_gold.vw_executive_monthly
+workspace.eacc_ecommerce_gold.vw_product_performance
+workspace.eacc_ecommerce_gold.vw_sessions_by_source
+workspace.eacc_ecommerce_gold.vw_cohort_retention
+```
 
 ## Tableau Cloud Option
 
