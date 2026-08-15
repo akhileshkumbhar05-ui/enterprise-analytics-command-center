@@ -38,7 +38,7 @@ This is not a single-dashboard project. It is a multi-domain analytics platform 
 - Cloud warehouse with raw, staging, intermediate, and mart layers
 - Domain-specific analytical marts
 - Power BI semantic model with DAX measures and documented KPIs
-- Executive dashboard suite
+- Executive dashboard suite with Tableau and Power BI tracks
 - SQL case-study library
 - Python notebooks and/or scripts for EDA, data quality, forecasting, and segmentation
 - BA portfolio pack
@@ -84,3 +84,9 @@ BigQuery public e-commerce source
 ```
 
 This preserves the work already completed in BigQuery while adding hands-on practice for the Databricks Certified Data Engineer Associate exam.
+
+## Current Dashboard Evidence
+
+The first Tableau dashboard is connected to Databricks Gold views and saved as the initial e-commerce executive view.
+
+![E-commerce executive dashboard](tableau/screenshots/ecommerce_executive_dashboard.png)

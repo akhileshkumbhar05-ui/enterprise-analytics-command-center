@@ -2,7 +2,7 @@
 
 ## Dashboard Name
 
-E-commerce Lakehouse Command Center
+E-Commerce Executive Dashboard
 
 ## Data Source
 
@@ -12,6 +12,18 @@ Databricks SQL views:
 - `vw_product_performance`
 - `vw_sessions_by_source`
 - `vw_cohort_retention`
+
+## Current Build Evidence
+
+The first dashboard version has been saved and captured here:
+
+![E-commerce executive dashboard](screenshots/ecommerce_executive_dashboard.png)
+
+Current version includes:
+
+- Executive KPI cards for revenue, profit, orders, customers, and average order value.
+- Monthly revenue trend.
+- Product revenue by category split by department.
 
 ## Sheet 1: Executive Trend
 
