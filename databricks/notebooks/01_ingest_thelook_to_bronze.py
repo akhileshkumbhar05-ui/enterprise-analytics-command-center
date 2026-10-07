@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "5"
+# ///
 # MAGIC %md
 # MAGIC # 01 - Ingest TheLook To Bronze
 # MAGIC
@@ -20,16 +24,73 @@ import os
 import urllib.parse
 import urllib.request
 
+<<<<<<< Updated upstream
+=======
+catalog = "workspace"
+bronze_schema = "eacc_ecommerce_bronze"
+volume_name = "raw_files"
+
+bucket = "eacc-thelook-raw-akhil-20260724"
+source_prefix = "eacc/thelook"
+volume_base = f"/Volumes/{catalog}/{bronze_schema}/{volume_name}/thelook"
+
+source_tables = [
+    "users",
+    "orders",
+    "order_items",
+    "products",
+    "inventory_items",
+    "distribution_centers",
+    "events",
+]
+
+spark.sql(f"CREATE VOLUME IF NOT EXISTS `{catalog}`.`{bronze_schema}`.`{volume_name}`")
+
+def list_public_gcs_objects(bucket_name, prefix):
+    encoded_prefix = urllib.parse.quote(prefix, safe="")
+    url = f"https://storage.googleapis.com/storage/v1/b/{bucket_name}/o?prefix={encoded_prefix}"
+    with urllib.request.urlopen(url) as response:
+        payload = json.load(response)
+    return [
+        item["name"]
+        for item in payload.get("items", [])
+        if item["name"].endswith(".parquet")
+    ]
+
+download_results = []
+
+for table_name in source_tables:
+    target_dir = f"{volume_base}/{table_name}"
+    os.makedirs(target_dir, exist_ok=True)
+
+    objects = list_public_gcs_objects(bucket, f"{source_prefix}/{table_name}/")
+
+    for object_name in objects:
+        file_name = os.path.basename(object_name)
+        target_path = f"{target_dir}/{file_name}"
+        object_url = f"https://storage.googleapis.com/{bucket}/{urllib.parse.quote(object_name, safe='/')}"
+        urllib.request.urlretrieve(object_url, target_path)
+
+    download_results.append((table_name, len(objects), target_dir))
+
+display(spark.createDataFrame(download_results, ["source_table", "files_downloaded", "volume_path"]))
+
+# COMMAND ----------
+
+>>>>>>> Stashed changes
 from pyspark.sql.functions import current_timestamp, lit
 
 dbutils.widgets.text("catalog", "workspace")
 dbutils.widgets.text("bronze_schema", "eacc_ecommerce_bronze")
 dbutils.widgets.dropdown("source_mode", "gcs_parquet", ["gcs_parquet", "bigquery"])
 dbutils.widgets.text("gcs_raw_path", "/Volumes/workspace/eacc_ecommerce_bronze/raw_files/thelook")
+<<<<<<< Updated upstream
 dbutils.widgets.dropdown("stage_public_gcs_to_volume", "false", ["false", "true"])
 dbutils.widgets.text("public_gcs_bucket", "eacc-thelook-raw-akhil-20260724")
 dbutils.widgets.text("public_gcs_prefix", "eacc/thelook")
 dbutils.widgets.text("volume_name", "raw_files")
+=======
+>>>>>>> Stashed changes
 dbutils.widgets.text("bigquery_billing_project", "enterprise-analytics-cc")
 
 catalog = dbutils.widgets.get("catalog").strip()
